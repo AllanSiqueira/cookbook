@@ -4,10 +4,10 @@
 <%= form_for(@recipe) do |f| %>
   <div>
     <%= f.label :title, 'Título'%>
-    <%= f.text_field :title, :required => true %>
+    <%= f.text_field :title %>
     <br>
-    <%= f.label :recipe_type, 'Tipo da Receita'%>
-    <%= f.text_field :recipe_type, :required => true %>
+    <%= f.label :recipe_type_id, 'Tipo da Receita'%>
+    <%= f.collection_select :recipe_type_id, @recipe_types, :id, :name  %>
     <br>
     <%= f.label :cuisine_id, 'Cozinha' %>
     <%= f.collection_select :cuisine_id, @cuisines, :id, :name %>
@@ -19,10 +19,10 @@
     <%= f.text_field :cook_time %>
     <br>
     <%= f.label :ingredients, 'Ingredientes'%>
-    <%= f.text_field :ingredients, :required => true %>
+    <%= f.text_field :ingredients %>
     <br>
     <%= f.label :cook_method, 'Como Preparar'%>
-    <%= f.text_field :cook_method, :required => true %>
+    <%= f.text_field :cook_method %>
   </div>
   <%= f.submit 'Enviar' %>
 <% end %>
