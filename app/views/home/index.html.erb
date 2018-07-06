@@ -11,3 +11,10 @@
 <% end %>
 <br>
 <%= link_to 'Enviar uma receita', new_recipe_path %>
+
+<h3>Cozinhas!</h3>
+<ul>
+  <% @cuisines.each do |cuisine| %>
+    <li><%= link_to cuisine.name, cuisine %></li>
+  <% end %>
+</ul>
