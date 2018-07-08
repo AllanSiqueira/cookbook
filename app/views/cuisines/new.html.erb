@@ -1,6 +1,4 @@
-<%= @cuisine.errors.full_messages.each do |e| %>
-  <%= e %>
-<% end %>
+<%= render partial: 'shared/model_error_messages', locals: {model: @cuisine} %>
 <%= form_for @cuisine do |f| %>
   <%= f.label :name, 'Nome' %>
   <%= f.text_field :name %>

@@ -1,3 +1,4 @@
+<%= render partial: 'shared/model_error_messages', locals: {model: @recipe} %>
 <%= form_for(@recipe) do |f| %>
   <div>
     <%= f.label :title, 'Título'%>
