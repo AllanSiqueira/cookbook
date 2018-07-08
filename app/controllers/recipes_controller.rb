@@ -2,11 +2,13 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find params[:id]
   end
+
   def new
     @cuisines = Cuisine.all
     @recipe_types = RecipeType.all
     @recipe = Recipe.new
   end
+
   def create
     @recipe = Recipe.new recipes_params
     if @recipe.save
@@ -15,6 +17,23 @@ class RecipesController < ApplicationController
       @cuisines = Cuisine.all
       @recipe_types = RecipeType.all  
       render 'new'
+    end
+  end
+
+  def edit
+    @cuisines = Cuisine.all
+    @recipe_types = RecipeType.all
+    @recipe = Recipe.find params[:id]
+  end
+
+  def update
+    @recipe = Recipe.find params[:id]
+    if @recipe.update recipes_params
+      redirect_to @recipe
+    else
+      @cuisines = Cuisine.all
+      @recipe_types = RecipeType.all
+      render 'edit'
     end
   end
 
