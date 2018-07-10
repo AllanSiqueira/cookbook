@@ -4,6 +4,9 @@
     <%= f.label :title, 'Título'%>
     <%= f.text_field :title %>
     <br>
+    <%= f.label :photo, 'Foto' %>
+    <%= f.file_field :photo %>
+    <br>
     <%= f.label :recipe_type_id, 'Tipo da Receita'%>
     <%= f.collection_select :recipe_type_id, @recipe_types, :id, :name  %>
     <br>

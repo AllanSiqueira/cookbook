@@ -8,7 +8,7 @@ feature 'User edit recipe' do
     cuisine = Cuisine.create name: 'Francesa'
     recipe = Recipe.create title: 'Bolo de Laranja', cuisine: cuisine, recipe_type: recipe_type,
                           difficulty: 'Fácil', cook_time: 50, ingredients: 'Farinha, laranja, ovo, leite, fermento',
-                          cook_method: 'Bate tudo e coloca no forno'
+                          cook_method: 'Bate tudo e coloca no forno', photo: File.new(Rails.root.join('spec', 'support', 'tabule.jpg'))
     
     #user actions
     visit root_path
@@ -16,6 +16,7 @@ feature 'User edit recipe' do
     click_on 'Editar'
 
     fill_in 'Título', with: 'Bolo de Laranja Gourmet'
+    attach_file('Foto', Rails.root.join('spec', 'support', 'bolo.jpg'))
     select 'Francesa', from: 'Cozinha'
     select 'Dessert', from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Dificil'
@@ -25,6 +26,7 @@ feature 'User edit recipe' do
     #expectations
 
     expect(page).to have_css('h1', text: 'Bolo de Laranja Gourmet')
+    expect(page).to have_css("img[src*='bolo.jpg']")
     expect(page).to have_css('h3', text: 'Detalhes')
     expect(page).to have_css('p', text: 'Dessert')
     expect(page).to have_css('p', text: 'Francesa')

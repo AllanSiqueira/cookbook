@@ -12,6 +12,7 @@ feature 'Visitor register recipe' do
     click_on 'Enviar uma receita'
 
     fill_in 'Título', with: 'Tabule'
+    attach_file('Foto', Rails.root.join('spec', 'support', 'tabule.jpg'))
     select 'Arabe', from: 'Cozinha'
     select 'Entrada', from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Fácil'
@@ -22,6 +23,7 @@ feature 'Visitor register recipe' do
 
 
     expect(page).to have_css('h1', text: 'Tabule')
+    expect(page).to have_css("img[src*='tabule.jpg']")
     expect(page).to have_css('h3', text: 'Detalhes')
     expect(page).to have_css('p', text: 'Entrada')
     expect(page).to have_css('p', text: 'Arabe')
