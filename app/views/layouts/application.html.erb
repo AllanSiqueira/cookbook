@@ -7,15 +7,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
+  <body>
+  <nav>
     <%= form_tag search_path, method: 'get' do %>
       <%= label_tag :q, 'Buscar Receitas:' %>
       <%= text_field_tag :q %>
       <%= submit_tag "Buscar" %>
     <% end %>
-  </head>
-
-  <body>
+    <ul>
+      <li>
+        <% if user_signed_in? %>
+          <%= "Olá #{current_user.email}" %>
+        <% else %>
+          <%= link_to 'Entrar', new_user_session_path %>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
