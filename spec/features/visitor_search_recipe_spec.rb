@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  feature 'User search a recipe' do
+  feature 'Visitor search a recipe' do
     scenario 'succefully' do
       recipe_type = RecipeType.create name: 'Sobremesa'
       cuisine = Cuisine.create name: 'Brasileira'
