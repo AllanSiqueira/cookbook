@@ -2,15 +2,17 @@ require 'rails_helper'
 
 feature 'User edit recipe' do
   scenario 'succefully' do
+    user = FactoryBot.create(:user)
     recipe_type = RecipeType.create name: 'Sobremesa'
-    recipe_type = RecipeType.create name: 'Dessert'
+    another_recipe_type = RecipeType.create name: 'Dessert'
     cuisine = Cuisine.create name: 'Brasileira'
-    cuisine = Cuisine.create name: 'Francesa'
+    another_cuisine = Cuisine.create name: 'Francesa'
     recipe = Recipe.create title: 'Bolo de Laranja', cuisine: cuisine, recipe_type: recipe_type,
                           difficulty: 'Fácil', cook_time: 50, ingredients: 'Farinha, laranja, ovo, leite, fermento',
                           cook_method: 'Bate tudo e coloca no forno', photo: File.new(Rails.root.join('spec', 'support', 'tabule.jpg'))
     
     #user actions
+    login_as(user, :scope => :user)
     visit root_path
     click_on recipe.title
     click_on 'Editar'
@@ -38,15 +40,17 @@ feature 'User edit recipe' do
     expect(page).to have_css('p', text:  'Bate tudo e coloca no forno')
   end
   scenario 'and must have all fields filled' do
+    user = FactoryBot.create(:user)
     recipe_type = RecipeType.create name: 'Sobremesa'
-    recipe_type = RecipeType.create name: 'Dessert'
+    another_recipe_type = RecipeType.create name: 'Dessert'
     cuisine = Cuisine.create name: 'Brasileira'
-    cuisine = Cuisine.create name: 'Francesa'
+    another_cuisine = Cuisine.create name: 'Francesa'
     recipe = Recipe.create title: 'Bolo de Laranja', cuisine: cuisine, recipe_type: recipe_type,
                           difficulty: 'Fácil', cook_time: 50, ingredients: 'Farinha, laranja, ovo, leite, fermento',
                           cook_method: 'Bate tudo e coloca no forno'
     
     #user actions
+    login_as(user, :scope => :user)
     visit root_path
     click_on recipe.title
     click_on 'Editar'
@@ -61,5 +65,18 @@ feature 'User edit recipe' do
     #expectations
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
+  end
+  scenario 'and must be authenticated' do
+    recipe_type = RecipeType.create name: 'Sobremesa'
+    cuisine = Cuisine.create name: 'Brasileira'
+    recipe = Recipe.create title: 'Bolo de Laranja', cuisine: cuisine, recipe_type: recipe_type,
+                          difficulty: 'Fácil', cook_time: 50, ingredients: 'Farinha, laranja, ovo, leite, fermento',
+                          cook_method: 'Bate tudo e coloca no forno'
+    
+    visit root_path
+    click_on recipe.title
+    click_on 'Editar'
+    
+    expect(current_path).to eq new_user_session_path
   end
 end
