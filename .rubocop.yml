@@ -1,0 +1,27 @@
+inherit_mode:
+  merge:
+    - Exclude
+    - Include
+Rails:
+  Enabled: true
+AllCops:
+  UseCache: false
+  TargetRubyVersion: 2.3
+  Include:
+    - '**/Rakefile'
+    - '**/Gemfile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false

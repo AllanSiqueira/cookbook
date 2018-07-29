@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:edit]
-  
+
   def show
     @recipe = Recipe.find params[:id]
   end
@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     else
       @cuisines = Cuisine.all
-      @recipe_types = RecipeType.all  
+      @recipe_types = RecipeType.all
       render 'new'
     end
   end
@@ -44,5 +44,4 @@ class RecipesController < ApplicationController
   def recipes_params
     params.require(:recipe).permit(:title, :photo, :recipe_type_id, :cuisine_id, :difficulty, :cook_time, :ingredients, :cook_method)
   end
-
 end
