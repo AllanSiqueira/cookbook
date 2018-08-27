@@ -5,7 +5,9 @@ feature 'Visitor visit homepage' do
     visit root_path
 
     expect(page).to have_css('h1', text: 'CookBook')
-    expect(page).to have_css('p', text: 'Bem-vindo ao maior livro de receitas online')
+    expect(page).to have_css('p',
+                             text: 'Bem-vindo ao maior
+                                    livro de receitas online')
   end
 
   scenario 'and view recipe' do
@@ -34,10 +36,12 @@ feature 'Visitor visit homepage' do
                            cook_time: 60)
 
     another_recipe_type = RecipeType.create(name: 'Prato Principal')
-    another_recipe = Recipe.create(title: 'Feijoada', recipe_type: another_recipe_type,
+    another_recipe = Recipe.create(title: 'Feijoada',
+                                   recipe_type: another_recipe_type,
                                    cuisine: cuisine, difficulty: 'Difícil',
                                    ingredients: 'Feijao, paio, carne seca',
-                                   cook_method: 'Cozinhar o feijao e refogar com as carnes já preparadas',
+                                   cook_method: 'Cozinhar o feijao e refogar
+                                                 com as carnes já preparadas',
                                    cook_time: 90)
     visit root_path
     expect(page).to have_css('h1', text: recipe.title)

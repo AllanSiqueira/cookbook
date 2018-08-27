@@ -8,7 +8,9 @@ feature 'Visitor view recipe details' do
                            cuisine: cuisine, difficulty: 'Médio',
                            cook_time: 60,
                            ingredients: 'Farinha, açucar, cenoura',
-                           cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                           cook_method: 'Cozinhe a cenoura, corte em pedaços
+                                         pequenos, misture com o restante dos
+                                         ingredientes')
     visit root_path
     click_on recipe.title
     expect(page).to have_css('h1', text: recipe.title)
@@ -29,7 +31,9 @@ feature 'Visitor view recipe details' do
                            cuisine: cuisine, difficulty: 'Médio',
                            cook_time: 60,
                            ingredients: 'Farinha, açucar, cenoura',
-                           cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                           cook_method: 'Cozinhe a cenoura, corte em pedaços
+                                         pequenos, misture com o restante dos
+                                         ingredientes')
     visit root_path
     click_on recipe.title
     click_on 'Voltar'
