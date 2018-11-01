@@ -21,5 +21,4 @@ class RecipeTypesController < ApplicationController
   def recipe_type_params
     params.require(:recipe_type).permit(:name)
   end
-
 end
